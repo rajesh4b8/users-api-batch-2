@@ -1,0 +1,16 @@
+// Ping request
+http://localhost:8080/ping
+
+
+###
+// Get success for user id 123
+http://localhost:8080/users/123
+
+###
+// Get 400 for invalid number
+http://localhost:8080/users/abc
+
+###
+// Get 404 for user not found
+http://localhost:8080/users/111
+
