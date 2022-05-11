@@ -6,7 +6,8 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/rajesh4b8/users-api-batch-2/services/users"
+	"github.com/rajesh4b8/users-api-batch-2/domain/users"
+	usersService "github.com/rajesh4b8/users-api-batch-2/services/users"
 	"github.com/rajesh4b8/users-api-batch-2/utils/errors"
 )
 
@@ -20,9 +21,8 @@ func GetUser(c *gin.Context) {
 		return
 	}
 
-	user, getErr := users.GetUser(userId)
-	if getErr != nil {
-		restErr := errors.NewNotFoundError(fmt.Sprintf("user not found for id %d", userId))
+	user, restErr := usersService.GetUser(userId)
+	if restErr != nil {
 		c.JSON(restErr.Status, restErr)
 		return
 	}
@@ -31,5 +31,34 @@ func GetUser(c *gin.Context) {
 }
 
 func CreateUser(c *gin.Context) {
+	var user users.User
 
+	// bytes, err := ioutil.ReadAll(c.Request.Body)
+	// if err != nil {
+	// 	restErr := errors.NewBadRequestError("Input not readable")
+	// 	c.JSON(restErr.Status, restErr)
+	// 	return
+	// }
+
+	// if err := json.Unmarshal(bytes, &user); err != nil {
+	// 	fmt.Println(err)
+	// 	restErr := errors.NewBadRequestError("Invalid json")
+	// 	c.JSON(restErr.Status, restErr)
+	// 	return
+	// }
+
+	if err := c.ShouldBindJSON(&user); err != nil {
+		fmt.Println(err)
+		restErr := errors.NewBadRequestError("Invalid json")
+		c.JSON(restErr.Status, restErr)
+		return
+	}
+
+	result, saveErr := usersService.CreateUser(user)
+	if saveErr != nil {
+		c.JSON(saveErr.Status, saveErr)
+		return
+	}
+
+	c.JSON(http.StatusCreated, result)
 }

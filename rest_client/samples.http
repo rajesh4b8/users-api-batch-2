@@ -14,3 +14,18 @@ http://localhost:8080/users/abc
 // Get 404 for user not found
 http://localhost:8080/users/111
 
+###
+// valid json
+POST http://localhost:8080/users/
+
+{
+    "first_name": "Rajesh",
+    "last_name" : "Reddy",
+    "email": "rajeshtech4b8@gmail.com"
+}
+
+###
+// invalid json
+POST http://localhost:8080/users/
+
+some text here 

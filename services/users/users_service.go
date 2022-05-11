@@ -1,12 +1,13 @@
 package users
 
 import (
-	"errors"
+	"time"
 
 	"github.com/rajesh4b8/users-api-batch-2/domain/users"
+	"github.com/rajesh4b8/users-api-batch-2/utils/errors"
 )
 
-func GetUser(userId int64) (*users.User, error) {
+func GetUser(userId int64) (*users.User, *errors.RestErr) {
 	user := users.User{
 		Id:          123,
 		FirstName:   "Dummy First",
@@ -18,5 +19,11 @@ func GetUser(userId int64) (*users.User, error) {
 		return &user, nil
 	}
 
-	return nil, errors.New("user not found")
+	return nil, errors.NewNotFoundError("user not found")
+}
+
+func CreateUser(user users.User) (*users.User, *errors.RestErr) {
+	user.DateCreated = time.Now().String()
+
+	return &user, nil
 }
