@@ -3,8 +3,8 @@ http://localhost:8080/ping
 
 
 ###
-// Get success for user id 123
-http://localhost:8080/users/123
+// Get success for user id 1
+http://localhost:8080/users/3
 
 ###
 // Get 400 for invalid number
@@ -19,10 +19,23 @@ http://localhost:8080/users/111
 POST http://localhost:8080/users/
 
 {
+    "id" : 1,
     "first_name": "Rajesh",
     "last_name" : "Reddy",
     "email": "rajeshtech4b8@gmail.com"
 }
+
+###
+// invalid email id
+POST http://localhost:8080/users/
+
+{
+    "id" : 3,
+    "first_name": "Rajesh",
+    "last_name" : "Reddy",
+    "email": "  test@test.COM  "
+}
+
 
 ###
 // invalid json

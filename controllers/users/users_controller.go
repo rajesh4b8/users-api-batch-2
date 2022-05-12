@@ -54,6 +54,11 @@ func CreateUser(c *gin.Context) {
 		return
 	}
 
+	if restErr := user.Validate(); restErr != nil {
+		c.JSON(restErr.Status, restErr)
+		return
+	}
+
 	result, saveErr := usersService.CreateUser(user)
 	if saveErr != nil {
 		c.JSON(saveErr.Status, saveErr)
@@ -61,4 +66,10 @@ func CreateUser(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusCreated, result)
+}
+
+func FetchAllUsers(c *gin.Context) {
+
+	// should return a array of Users in JSON format
+
 }
