@@ -4,7 +4,7 @@ http://localhost:8080/ping
 
 ###
 // Get success for user id 1
-http://localhost:8080/users/3
+http://localhost:8080/users/1
 
 ###
 // Get 400 for invalid number
