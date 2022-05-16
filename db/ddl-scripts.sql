@@ -6,3 +6,8 @@ CREATE TABLE users
 	email varchar(50),
 	date_created timestamp not null default CURRENT_TIMESTAMP
 );
+
+
+-- Unique contraint on email
+ALTER TABLE users
+ADD CONSTRAINT unique_email UNIQUE (email);

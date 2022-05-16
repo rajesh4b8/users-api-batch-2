@@ -19,10 +19,9 @@ http://localhost:8080/users/111
 POST http://localhost:8080/users/
 
 {
-    "id" : 1,
-    "first_name": "Rajesh",
-    "last_name" : "Reddy",
-    "email": "rajeshtech4b8@gmail.com"
+    "first_name": "Teja",
+    "last_name" : "Test",
+    "email": "teja.test@gmail.com"
 }
 
 ###
@@ -33,7 +32,7 @@ POST http://localhost:8080/users/
     "id" : 3,
     "first_name": "Rajesh",
     "last_name" : "Reddy",
-    "email": "  test@test.COM  "
+    "email": "  testest.COM  "
 }
 
 
