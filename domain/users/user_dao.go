@@ -7,6 +7,7 @@ import (
 
 	"github.com/lib/pq"
 	"github.com/rajesh4b8/users-api-batch-2/datasource/postgres/users_db"
+	"github.com/rajesh4b8/users-api-batch-2/logger"
 	"github.com/rajesh4b8/users-api-batch-2/utils/date_utils"
 	"github.com/rajesh4b8/users-api-batch-2/utils/errors"
 )
@@ -26,7 +27,6 @@ var (
 )
 
 func (user *User) Get() *errors.RestErr {
-
 	if err := users_db.Client.Ping(); err != nil {
 		return errors.NewInternalServerError("Database connection failed")
 	}
@@ -44,18 +44,21 @@ func (user *User) Get() *errors.RestErr {
 
 	stmt, err := users_db.Client.Prepare(queryFetchUser)
 	if err != nil {
-		return errors.NewInternalServerError("Error while preparing DB stmt")
+		logger.Error("Error while prepare stmt the user", err)
+		return errors.NewInternalServerError("Database error")
 	}
 	// defer the execution to close stmt until before return
 	defer stmt.Close()
 
 	result := stmt.QueryRow(user.Id)
 	if err := result.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Email, &user.DateCreated); err != nil {
-		fmt.Println(err)
+
 		if strings.Contains(err.Error(), noRowsError) {
 			return errors.NewNotFoundError(fmt.Sprintf("User not found for id %d", user.Id))
 		}
-		return errors.NewInternalServerError(fmt.Sprintf("Error while fetching user %d", user.Id))
+
+		logger.Error(fmt.Sprintf("Error while fetching user %d", user.Id), err)
+		return errors.NewInternalServerError("Database error")
 	}
 
 	return nil
@@ -64,7 +67,8 @@ func (user *User) Get() *errors.RestErr {
 func (user *User) GetByEmail() *errors.RestErr {
 	stmt, err := users_db.Client.Prepare(queryFetchUserByEmail)
 	if err != nil {
-		return errors.NewInternalServerError("Error while preparing DB stmt")
+		logger.Error("Error while prepare stmt the user", err)
+		return errors.NewInternalServerError("Database error")
 	}
 	// defer the execution to close stmt until before return
 	defer stmt.Close()

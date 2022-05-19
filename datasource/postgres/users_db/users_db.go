@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	_ "github.com/lib/pq"
+	"github.com/rajesh4b8/users-api-batch-2/logger"
 )
 
 const (
@@ -32,8 +33,9 @@ func init() {
 	}
 
 	if err := Client.Ping(); err != nil {
+		logger.Error("DB connection failed", err)
 		panic(err)
 	}
 
-	fmt.Println("Database connection successful!!")
+	logger.Info("Database connection successful")
 }

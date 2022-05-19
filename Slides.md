@@ -37,3 +37,20 @@
 - Create new function in service to fetch all the users
 - Call Dao to get list of users from map
 - return error if map is empty
+
+## Create user
+
+- Get the user details from POST request body
+- Validated the email id
+- Pass the user to service
+- Create the user
+
+## Database integration
+
+- Used docker to bring up the Postgres DB
+- Created a table for users
+- Insert / Select queries to create and get the user
+
+## Error handling
+
+- Always check the error as soon as we get them.
