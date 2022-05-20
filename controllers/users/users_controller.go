@@ -7,8 +7,12 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/rajesh4b8/users-api-batch-2/domain/users"
-	usersService "github.com/rajesh4b8/users-api-batch-2/services/users"
+	"github.com/rajesh4b8/users-api-batch-2/services"
 	"github.com/rajesh4b8/users-api-batch-2/utils/errors"
+)
+
+var (
+	userService = services.UsersService
 )
 
 func GetUser(c *gin.Context) {
@@ -21,7 +25,7 @@ func GetUser(c *gin.Context) {
 		return
 	}
 
-	user, restErr := usersService.GetUser(userId)
+	user, restErr := userService.GetUser(userId)
 	if restErr != nil {
 		c.JSON(restErr.Status, restErr)
 		return
@@ -59,7 +63,7 @@ func CreateUser(c *gin.Context) {
 		return
 	}
 
-	result, saveErr := usersService.CreateUser(user)
+	result, saveErr := userService.CreateUser(user)
 	if saveErr != nil {
 		c.JSON(saveErr.Status, saveErr)
 		return
