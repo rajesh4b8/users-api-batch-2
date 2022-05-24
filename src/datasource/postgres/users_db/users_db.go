@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	_ "github.com/lib/pq"
-	"github.com/rajesh4b8/users-api-batch-2/logger"
+	"github.com/rajesh4b8/users-api-batch-2/src/logger"
 )
 
 const (

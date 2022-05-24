@@ -6,9 +6,9 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/rajesh4b8/users-api-batch-2/domain/users"
-	"github.com/rajesh4b8/users-api-batch-2/services"
-	"github.com/rajesh4b8/users-api-batch-2/utils/errors"
+	"github.com/rajesh4b8/users-api-batch-2/src/domain/users"
+	"github.com/rajesh4b8/users-api-batch-2/src/services"
+	"github.com/rajesh4b8/users-api-batch-2/src/utils/errors"
 )
 
 var (

@@ -3,7 +3,7 @@ package users
 import (
 	"strings"
 
-	"github.com/rajesh4b8/users-api-batch-2/utils/errors"
+	"github.com/rajesh4b8/users-api-batch-2/src/utils/errors"
 )
 
 type User struct {

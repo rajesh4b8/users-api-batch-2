@@ -6,10 +6,10 @@ import (
 	"time"
 
 	"github.com/lib/pq"
-	"github.com/rajesh4b8/users-api-batch-2/datasource/postgres/users_db"
-	"github.com/rajesh4b8/users-api-batch-2/logger"
-	"github.com/rajesh4b8/users-api-batch-2/utils/date_utils"
-	"github.com/rajesh4b8/users-api-batch-2/utils/errors"
+	"github.com/rajesh4b8/users-api-batch-2/src/datasource/postgres/users_db"
+	"github.com/rajesh4b8/users-api-batch-2/src/logger"
+	"github.com/rajesh4b8/users-api-batch-2/src/utils/date_utils"
+	"github.com/rajesh4b8/users-api-batch-2/src/utils/errors"
 )
 
 const (

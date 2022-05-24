@@ -1,8 +1,8 @@
 package app
 
 import (
-	"github.com/rajesh4b8/users-api-batch-2/controllers/ping"
-	"github.com/rajesh4b8/users-api-batch-2/controllers/users"
+	"github.com/rajesh4b8/users-api-batch-2/src/controllers/ping"
+	"github.com/rajesh4b8/users-api-batch-2/src/controllers/users"
 )
 
 func mapUrls() {
